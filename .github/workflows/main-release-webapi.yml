@@ -20,7 +20,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
-            fetch-depth: 0
+          fetch-depth: 0
 
       - name: Set up Go
         uses: actions/setup-go@v4
@@ -39,7 +39,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
-            fetch-depth: 0
+          fetch-depth: 0
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -56,8 +56,8 @@ jobs:
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v5
         with:
-          context: ./src/
-          file: ./src/WebApi/Dockerfile
+          context: ./src/WebApi
+          file: Dockerfile
           push: true
           tags: jonathanperis/rinha2-back-end-bora-dale-xgh-go:latest
           build-args: |
@@ -74,7 +74,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
-            fetch-depth: 0
+          fetch-depth: 0
 
       - name: Build and Run Docker Compose for Healthcheck Test
         run: |
@@ -103,7 +103,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
-            fetch-depth: 0
+          fetch-depth: 0
 
       - name: Build and Run Docker Compose for Load Test
         run: |
