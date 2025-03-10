@@ -1,4 +1,4 @@
-name: 'rinha2-jonathanperis-xgh-prod'
+name: 'rinha2-jonathanperis-xgh-prod-go'
 
 services:
 
@@ -26,31 +26,6 @@ services:
     container_name: webapi-2-go
     ports:
       - "4201:8080"
-
-  # webapi1-go: &webapi1
-  #   image: jonathanperis/rinha2-back-end-bora-dale-xgh-go:latest
-  #   hostname: webapi1
-  #   container_name: webapi-1
-  #   depends_on: 
-  #     - db
-  #   restart: always      
-  #   environment: &env
-  #     ASPNETCORE_URLS: http://*:8080
-  #     ConnectionStrings__DefaultConnection: Host=localhost;Username=postgres;Password=postgres;Database=rinha;Minimum Pool Size=10;Maximum Pool Size=10;Multiplexing=true;
-  #   network_mode: host
-  #   deploy:
-  #     resources:
-  #       limits:
-  #         cpus: "0.4"
-  #         memory: "100MB"
-  
-  # webapi2:
-  #   <<: *webapi1
-  #   hostname: webapi2
-  #   container_name: webapi-2
-  #   environment:
-  #     <<: *env
-  #     ASPNETCORE_URLS: http://*:8081
 
   db:
     image: postgres
