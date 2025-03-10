@@ -1,30 +1,56 @@
 name: 'rinha2-jonathanperis-xgh-prod'
 
 services:
-  webapi1: &webapi1
-    image: jonathanperis/rinha2-back-end-bora-dale-xgh:latest
-    hostname: webapi1
-    container_name: webapi-1
-    depends_on: 
+
+  webapi1-go: &webapi1
+    image: jonathanperis/rinha2-back-end-bora-dale-xgh-go:latest
+    hostname: webapi1-go
+    container_name: webapi-1-go
+    depends_on:
       - db
     restart: always      
-    environment: &env
-      ASPNETCORE_URLS: http://*:8080
-      ConnectionStrings__DefaultConnection: Host=localhost;Username=postgres;Password=postgres;Database=rinha;Minimum Pool Size=10;Maximum Pool Size=10;Multiplexing=true;
+    environment:
+      DATABASE_URL: "postgres://postgres:postgres@db:5432/rinha?sslmode=disable"
+    ports:
+      - "4200:8080"   
     network_mode: host
     deploy:
       resources:
         limits:
           cpus: "0.4"
           memory: "100MB"
-  
-  webapi2:
+
+  webapi2-go:
     <<: *webapi1
-    hostname: webapi2
-    container_name: webapi-2
-    environment:
-      <<: *env
-      ASPNETCORE_URLS: http://*:8081
+    hostname: webapi2-go
+    container_name: webapi-2-go
+    ports:
+      - "4201:8080"
+
+  # webapi1-go: &webapi1
+  #   image: jonathanperis/rinha2-back-end-bora-dale-xgh-go:latest
+  #   hostname: webapi1
+  #   container_name: webapi-1
+  #   depends_on: 
+  #     - db
+  #   restart: always      
+  #   environment: &env
+  #     ASPNETCORE_URLS: http://*:8080
+  #     ConnectionStrings__DefaultConnection: Host=localhost;Username=postgres;Password=postgres;Database=rinha;Minimum Pool Size=10;Maximum Pool Size=10;Multiplexing=true;
+  #   network_mode: host
+  #   deploy:
+  #     resources:
+  #       limits:
+  #         cpus: "0.4"
+  #         memory: "100MB"
+  
+  # webapi2:
+  #   <<: *webapi1
+  #   hostname: webapi2
+  #   container_name: webapi-2
+  #   environment:
+  #     <<: *env
+  #     ASPNETCORE_URLS: http://*:8081
 
   db:
     image: postgres

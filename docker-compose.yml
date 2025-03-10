@@ -3,7 +3,7 @@ name: 'rinha2-jonathanperis-xgh'
 services:
 
   webapi1-go: &webapi1
-    # image: jonathanperis/rinha2-back-end-bora-dale-xgh:latest
+    # image: jonathanperis/rinha2-back-end-bora-dale-xgh-go:latest
     build:
       context: ./src/WebApi
       dockerfile: Dockerfile    
