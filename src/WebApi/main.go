@@ -17,8 +17,8 @@ import (
 )
 
 type SaldoDto struct {
-	Total      int       `json:"total"`
-	Limite     int       `json:"limite"`
+	Total       int       `json:"total"`
+	Limite      int       `json:"limite"`
 	DataExtrato time.Time `json:"data_extrato"`
 }
 
@@ -100,8 +100,8 @@ func getExtratoHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	limite, exists := clientes[clientId]
-	if !exists {
+	// Check if the client exists
+	if _, exists := clientes[clientId]; !exists {
 		http.Error(w, "Client not found", http.StatusNotFound)
 		return
 	}
@@ -137,8 +137,8 @@ func getExtratoHandler(w http.ResponseWriter, r *http.Request) {
 	// Return the result.
 	extrato := ExtratoDto{
 		Saldo: SaldoDto{
-			Total:      total,
-			Limite:     dbLimite,
+			Total:       total,
+			Limite:      dbLimite,
 			DataExtrato: dataExtrato,
 		},
 		UltimasTransacoes: transacoes,
