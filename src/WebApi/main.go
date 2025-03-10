@@ -56,8 +56,7 @@ func main() {
 	// Read connection string from environment variable.
 	databaseURL := os.Getenv("DATABASE_URL")
 	if databaseURL == "" {
-		// Default connection string (adjust as needed).
-		databaseURL = "postgres://postgres:postgres@localhost:5432/rinha?sslmode=disable"
+		log.Fatal("DATABASE_URL env var is not set")
 	}
 
 	// Create a pgx pool
@@ -76,13 +75,14 @@ func main() {
 	r.Post("/clientes/{id}/transacoes", postTransacaoHandler)
 
 	srv := &http.Server{
-		Addr:         ":9999", // match the port in launchSettings.json
+		Addr:         ":9999",
 		Handler:      r,
 		ReadTimeout:  5 * time.Second,
 		WriteTimeout: 10 * time.Second,
 	}
 
 	log.Println("Starting server on port 9999...")
+
 	if err := srv.ListenAndServe(); err != nil {
 		log.Fatalf("Server failed: %v", err)
 	}
@@ -112,8 +112,6 @@ func getExtratoHandler(w http.ResponseWriter, r *http.Request) {
 	ctx, cancel := context.WithTimeout(r.Context(), 5*time.Second)
 	defer cancel()
 
-	// Query using a stored procedure or function: GetSaldoClienteById.
-	// Assumes the function returns columns: total, limite, data_extrato, and a JSON array of transactions.
 	row := dbPool.QueryRow(ctx, "SELECT * FROM GetSaldoClienteById($1)", clientId)
 
 	var total int
@@ -186,8 +184,6 @@ func postTransacaoHandler(w http.ResponseWriter, r *http.Request) {
 	ctx, cancel := context.WithTimeout(r.Context(), 5*time.Second)
 	defer cancel()
 
-	// Execute a stored procedure or function to insert the transaction.
-	// Assumes function "InsertTransacao" returns the updated saldo.
 	row := dbPool.QueryRow(ctx, "SELECT InsertTransacao($1, $2, $3, $4)", clientId, transacao.Valor, transacao.Tipo, transacao.Descricao)
 	var updatedSaldo int
 	err = row.Scan(&updatedSaldo)
