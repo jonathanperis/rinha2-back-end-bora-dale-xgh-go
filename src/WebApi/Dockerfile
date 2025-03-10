@@ -2,7 +2,6 @@
 FROM golang:1.20-alpine AS builder
 
 WORKDIR /app
-
 # Cache go mod downloads and build dependencies first.
 COPY go.mod go.sum ./
 
@@ -19,7 +18,6 @@ FROM alpine:latest
 
 WORKDIR /app
 # Copy the binary from the builder stage
-
 COPY --from=builder /app/rinha-go .
 
 # Expose port 9999 as defined in docker-compose.yml
