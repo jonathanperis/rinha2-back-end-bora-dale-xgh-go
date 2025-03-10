@@ -2,19 +2,20 @@ name: 'rinha2-jonathanperis-xgh'
 
 services:
 
-  webapi1: &webapi1
+  webapi1-go: &webapi1
     # image: jonathanperis/rinha2-back-end-bora-dale-xgh:latest
     build:
-      context: ./src/
-      dockerfile: ./WebApi/Dockerfile    
+      context: ./src/WebApi
+      dockerfile: Dockerfile    
     hostname: webapi1-go
     container_name: webapi-1-go
     depends_on:
       - db
     restart: always      
     environment:
-      # ConnectionStrings__DefaultConnection: Host=db;Username=postgres;Password=postgres;Database=rinha;Minimum Pool Size=10;Maximum Pool Size=10;Multiplexing=true;
       DATABASE_URL: "postgres://postgres:postgres@db:5432/rinha?sslmode=disable"
+    ports:
+      - "4200:8080"      
     deploy:
       resources:
         limits:
@@ -23,10 +24,12 @@ services:
     networks:
     - network-bora-dale-xgh
 
-  webapi2:
+  webapi2-go:
     <<: *webapi1
     hostname: webapi2-go
     container_name: webapi-2-go
+    ports:
+      - "4201:8080"
 
   db:
     image: postgres
@@ -60,8 +63,8 @@ services:
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on: 
-      - webapi1
-      - webapi2
+      - webapi1-go
+      - webapi2-go
     ports:
       - "9999:9999"
     deploy:

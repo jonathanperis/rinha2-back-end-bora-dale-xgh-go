@@ -72,13 +72,13 @@ func main() {
 	r.Post("/clientes/{id}/transacoes", postTransacaoHandler)
 
 	srv := &http.Server{
-		Addr:         ":9999",
+		Addr:         ":8080",
 		Handler:      r,
 		ReadTimeout:  5 * time.Second,
 		WriteTimeout: 10 * time.Second,
 	}
 
-	log.Println("Starting server on port 9999...")
+	log.Println("Starting server...")
 
 	if err := srv.ListenAndServe(); err != nil {
 		log.Fatalf("Server failed: %v", err)
