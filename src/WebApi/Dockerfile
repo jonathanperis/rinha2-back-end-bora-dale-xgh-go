@@ -4,7 +4,8 @@ FROM golang:1.20-alpine AS builder
 WORKDIR /app
 
 # Cache go mod downloads and build dependencies first.
-COPY go.mod go.sum ./
+# COPY go.mod go.sum ./
+COPY go.mod ./
 
 RUN go mod download
 
