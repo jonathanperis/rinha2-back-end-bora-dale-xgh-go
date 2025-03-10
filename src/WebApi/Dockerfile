@@ -1,11 +1,7 @@
 # Build step
 FROM golang:1.20-alpine AS builder
 
-RUN find . -printf '%y %p\n'
-
 WORKDIR /app
-
-RUN find . -printf '%y %p\n'
 
 # Cache go mod downloads and build dependencies first.
 COPY go.mod go.sum ./
