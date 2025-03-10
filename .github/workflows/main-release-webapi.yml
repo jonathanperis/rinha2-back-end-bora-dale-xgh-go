@@ -56,7 +56,7 @@ jobs:
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v5
         with:
-          context: ./src/
+          context: ./src/WebApi
           file: ./src/WebApi/Dockerfile
           push: true
           tags: jonathanperis/rinha2-back-end-bora-dale-xgh-go:latest
