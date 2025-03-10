@@ -16,8 +16,6 @@ import (
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 
-// Data models (matching the .NET DTOs)
-
 type SaldoDto struct {
 	Total      int       `json:"total"`
 	Limite     int       `json:"limite"`
@@ -41,7 +39,6 @@ type ClienteDto struct {
 	Saldo  int `json:"saldo"`
 }
 
-// Global clientes mapping as in the .NET code
 var clientes = map[int]int{
 	1: 100000,
 	2: 80000,
