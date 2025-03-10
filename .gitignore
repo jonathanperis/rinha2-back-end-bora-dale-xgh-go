@@ -21,6 +21,9 @@
 go.work
 go.work.sum
 
+# Go binary file
+rinha-go
+
 # env file
 .env
 
