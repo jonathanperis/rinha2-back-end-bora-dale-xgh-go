@@ -22,7 +22,7 @@ go.work
 go.work.sum
 
 # Go binary file
-rinha-go
+rinha2-back-end-bora-dale-xgh-go
 
 # env file
 .env

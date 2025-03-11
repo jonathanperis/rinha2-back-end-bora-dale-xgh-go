@@ -25,7 +25,7 @@ jobs:
     
       - name: Build the application
         run: |
-          go build -o rinha-go .
+          go build -o rinha2-back-end-bora-dale-xgh-go .
 
   container-test:
     needs: setup-build-test

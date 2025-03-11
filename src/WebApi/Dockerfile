@@ -12,16 +12,16 @@ RUN go mod download
 COPY . .
 
 # Build the binary with optimizations
-RUN go build -ldflags="-s -w" -o rinha-go .
+RUN go build -ldflags="-s -w" -o rinha2-back-end-bora-dale-xgh-go .
 
 # Final stage: use a minimal image
 FROM alpine:3.21
 
 WORKDIR /app
 # Copy the binary from the builder stage
-COPY --from=builder /app/rinha-go .
+COPY --from=builder /app/rinha2-back-end-bora-dale-xgh-go .
 
 # Expose port 8080 as defined in docker-compose.yml
 EXPOSE 8080
 
-ENTRYPOINT ["./rinha-go"]
+ENTRYPOINT ["./rinha2-back-end-bora-dale-xgh-go"]

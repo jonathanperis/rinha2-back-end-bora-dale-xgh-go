@@ -1,4 +1,4 @@
-module github.com/jonathanperis/rinha-go
+module github.com/jonathanperis/rinha2-back-end-bora-dale-xgh-go
 
 go 1.21
 

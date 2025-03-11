@@ -29,7 +29,7 @@ jobs:
 
       - name: Build the application
         run: |
-          go build -o rinha-go .
+          go build -o rinha2-back-end-bora-dale-xgh-go .
 
   build-push-image:
     needs: setup-build-test
