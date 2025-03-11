@@ -88,7 +88,7 @@ func main() {
 // healthzHandler is a basic health check
 func healthzHandler(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
-	w.Write([]byte("ok"))
+	w.Write([]byte("Healthy"))
 }
 
 // getExtratoHandler implements GET /clientes/{id}/extrato
