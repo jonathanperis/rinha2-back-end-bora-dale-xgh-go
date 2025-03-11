@@ -11,8 +11,6 @@ services:
     restart: always      
     environment:
       DATABASE_URL: "postgres://postgres:postgres@db:5432/rinha?sslmode=disable"
-    ports:
-      - "4200:8080"   
     network_mode: host
     deploy:
       resources:
@@ -24,8 +22,6 @@ services:
     <<: *webapi1
     hostname: webapi2-go
     container_name: webapi-2-go
-    ports:
-      - "4201:8080"
 
   db:
     image: postgres
