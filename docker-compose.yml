@@ -174,11 +174,6 @@ services:
   #   networks:
   #   - network-bora-dale-xgh
 
-# networks:
-#   k6:
-#   grafana:
-#   influxdb:
-
 networks:
   network-bora-dale-xgh:
     driver: bridge
