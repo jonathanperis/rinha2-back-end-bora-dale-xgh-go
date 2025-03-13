@@ -23,7 +23,7 @@ services:
           cpus: "0.4"
           memory: "100MB"
     networks:
-    - network-bora-dale-xgh
+    - network-bora-dale-xgh-go
 
   webapi2-go:
     <<: *webapi1
@@ -60,7 +60,7 @@ services:
           memory: "330MB"
     command: postgres -c checkpoint_timeout=600 -c max_wal_size=4096 -c synchronous_commit=0 -c fsync=0 -c full_page_writes=0
     networks:
-    - network-bora-dale-xgh
+    - network-bora-dale-xgh-go
 
   nginx:
     image: nginx
@@ -79,7 +79,7 @@ services:
           cpus: "0.2"
           memory: "20MB"
     networks:
-    - network-bora-dale-xgh
+    - network-bora-dale-xgh-go
 
   postgres-exporter:
     image: prometheuscommunity/postgres-exporter 
@@ -89,7 +89,7 @@ services:
     environment:
       DATA_SOURCE_NAME: "postgresql://postgres:postgres@db:5432/rinha?sslmode=disable"
     networks:
-    - network-bora-dale-xgh
+    - network-bora-dale-xgh-go
 
   prometheus:
     image: prom/prometheus
@@ -100,7 +100,7 @@ services:
       - prometheus-rinha-data:/prometheus
       - "./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml"
     networks:
-    - network-bora-dale-xgh
+    - network-bora-dale-xgh-go
 
   grafana:
     image: grafana/grafana
@@ -117,7 +117,7 @@ services:
     depends_on:
       - prometheus
     networks:
-    - network-bora-dale-xgh
+    - network-bora-dale-xgh-go
 
   influxdb:
     image: influxdb:2.0-alpine
@@ -135,7 +135,7 @@ services:
       - DOCKER_INFLUXDB_INIT_BUCKET=demo
       - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=EEKpryGZk8pVDXmIuy484BKUxM5jOEDv7YNoeNZUbsNbpbPbP6kK_qY9Zsyw7zNnlZ7pHG16FYzNaqwLMBUz8g==
     networks:
-      - network-bora-dale-xgh
+      - network-bora-dale-xgh-go
 
   k6:
     # image: grafana/k6
@@ -164,7 +164,7 @@ services:
     ports:
       - "5665:5665"
     networks:
-      - network-bora-dale-xgh
+      - network-bora-dale-xgh-go
 
   # pgadmin:
   #   image: dpage/pgadmin4
@@ -178,10 +178,10 @@ services:
   #     PGADMIN_DEFAULT_PASSWORD: "admin"
   #     PGADMIN_LISTEN_PORT: 5050
   #   networks:
-  #   - network-bora-dale-xgh
+  #   - network-bora-dale-xgh-go
 
 networks:
-  network-bora-dale-xgh:
+  network-bora-dale-xgh-go:
     driver: bridge
 
 volumes:
