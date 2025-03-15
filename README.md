@@ -41,3 +41,12 @@ Métricas colhidas no Docker Desktop após a execução do teste. O teste foi ex
 - Proxy reverso (Nginx)
 
 ![Proxy reverso](docs/screenshots/metrica-proxy-reverso.png)
+
+## Versões alternativas
+
+### Implementações que elaborei em outras linguagens
+
+- [rinha2-back-end-bora-dale-xgh-dotnet](https://github.com/jonathanperis/rinha2-back-end-bora-dale-xgh-dotnet)
+- [rinha2-back-end-bora-dale-xgh-rust](https://github.com/jonathanperis/rinha2-back-end-bora-dale-xgh-rust)
+- [rinha2-back-end-bora-dale-xgh-python](https://github.com/jonathanperis/rinha2-back-end-bora-dale-xgh-python)
+- [rinha2-back-end-bora-dale-xgh-postgrest](https://github.com/jonathanperis/rinha2-back-end-bora-dale-xgh-postgrest)
