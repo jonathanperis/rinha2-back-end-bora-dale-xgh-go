@@ -25,7 +25,7 @@ jobs:
 
       - name: Build the application
         run: |
-          go build -o rinha2-back-end-bora-dale-xgh-go .
+          go build -o rinha2-back-end-go .
 
   container-test:
     runs-on: ubuntu-latest
